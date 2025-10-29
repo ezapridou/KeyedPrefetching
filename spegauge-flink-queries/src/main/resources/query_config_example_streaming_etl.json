@@ -1,0 +1,30 @@
+{
+  "dataAnalyticsQueries" : [ ],
+  "streamingETLQueries" : [ {
+    "extractOperation" : {
+      "parallelismFactor" : 2,
+      "operationType" : "EXTRACT_JSON"
+    },
+    "downstreamOperator" : {
+      "metaTypeInfo" : "DataEnrichmentFunction",
+      "parallelismFactor" : 1,
+      "enrichmentType" : "SIMULATED_ENRICHMENT",
+      "filterField" : "A"
+    }
+  }, {
+    "extractOperation" : {
+      "parallelismFactor" : 1,
+      "operationType" : "EXTRACT_JSON"
+    },
+    "downstreamOperator" : {
+      "metaTypeInfo" : "RollingSumAndPOJOToX",
+      "parallelismFactor" : 1,
+      "windowSizeMs" : 3000,
+      "windowSlideMs" : 1000,
+      "aggregationType" : null,
+      "groupByField" : null,
+      "targetType" : "POJO_TO_AVRO",
+      "filterField" : "B"
+    }
+  } ]
+}
