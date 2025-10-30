@@ -1,5 +1,7 @@
 # Keyed Prefetching
-The changes we made on the Flink backend are reflected on this repository: [KeyedPrefetching-Flink](https://github.com/ezapridou/KeyedPrefetching-Flink)
+The changes we made on the Flink backend are reflected on this repository: [KeyedPrefetching-Flink](https://github.com/ezapridou/KeyedPrefetching-Flink).
+
+We reuse code for the data generation and query submission infrastructure from this repository: [SPEGauge](https://github.com/michaelkoepf/SPEGauge)
 
 ## Project Overview
 
@@ -97,3 +99,4 @@ Provided data generators that implement the interfaces in `spegauge-api`. The pa
   ```bash
   java -jar spegauge-driver/target/spegauge-driver-0.1.0-SNAPSHOT.jar -g 16 spegauge-generators/target/spegauge-generators-0.1.0-SNAPSHOT.jar
   ```
+
