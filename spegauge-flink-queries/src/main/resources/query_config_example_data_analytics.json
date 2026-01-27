@@ -1,0 +1,32 @@
+{
+  "dataAnalyticsQueries" : [ {
+    "joinOperators" : {
+      "parallelismFactor" : 2,
+      "windowSizeMs" : 3000,
+      "windowSlideMs" : 3000,
+      "joinType" : "TWO_WAY_EQUI_JOIN"
+    },
+    "downstreamOperator" : {
+      "metaTypeInfo" : "RollingReduce",
+      "parallelismFactor" : 1,
+      "aggregationType" : "MAX",
+      "groupByField" : "f0"
+    }
+  }, {
+    "joinOperators" : {
+      "parallelismFactor" : 1,
+      "windowSizeMs" : 3000,
+      "windowSlideMs" : 3000,
+      "joinType" : "TWO_WAY_EQUI_JOIN"
+    },
+    "downstreamOperator" : {
+      "metaTypeInfo" : "WindowAggregation",
+      "parallelismFactor" : 1,
+      "windowSizeMs" : 3000,
+      "windowSlideMs" : 1000,
+      "aggregationType" : "MEDIAN",
+      "groupByField" : "f1"
+    }
+  } ],
+  "streamingETLQueries" : [ ]
+}

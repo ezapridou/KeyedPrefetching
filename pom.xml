@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.michaelkoepf</groupId>
+  <artifactId>spegauge-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>0.1.0-SNAPSHOT</version>
+  <name>SPEGauge</name>
+  <url>http://michaelkoepf.github.io/SPEGauge</url>
+
+  <!-- child modules of this repository -->
+  <modules>
+    <module>spegauge-api</module>
+    <module>spegauge-driver</module>
+    <module>spegauge-generators</module>
+    <module>spegauge-flink-sdk</module>
+    <module>spegauge-flink-queries</module>
+  </modules>
+
+  <properties>
+    <!-- java version for compiler plugin -->
+    <maven.compiler.release>11</maven.compiler.release>
+
+    <!-- java version for all other modules -->
+    <java.version>17</java.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- dependency versions -->
+    <junit.version>5.10.1</junit.version>
+    <slf4j.version>1.7.15</slf4j.version>
+    <picocli.version>4.7.5</picocli.version>
+    <lombok.version>1.18.30</lombok.version>
+    <jackson.version>2.16.0</jackson.version>
+    <flink.version>2.0.0</flink.version>
+
+    <!-- plugin versions -->
+    <surefire.plugin.version>3.2.3</surefire.plugin.version>
+    <failsafe.plugin.version>3.2.3</failsafe.plugin.version>
+    <shadeplugin.version>3.5.1</shadeplugin.version>
+    <!-- using 5.6.3 since I couldn't find out how to configure the number of threads for the embedded web server in 6.x -->
+    <javalin.version>5.6.3</javalin.version>
+    <httpclient5.version>5.3</httpclient5.version>
+    <jettyserver.version>11.0.19</jettyserver.version>
+    <commonsstatistics.version>1.0</commonsstatistics.version>
+    <commmonsrng.version>1.5</commmonsrng.version>
+    <avro.version>1.11.3</avro.version>
+    <classgraph.version>4.8.168</classgraph.version>
+    <!-- annotationProcessorPaths requires maven-compiler-plugin version 3.5 or higher -->
+    <compiler.plugin.version>3.11.0</compiler.plugin.version>
+    <fmt.plugin.version>2.21.1</fmt.plugin.version>
+    <picocli.codgen.version>4.7.5</picocli.codgen.version>
+  </properties>
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+    <!-- DO NOT include version (managed by corresponding BOM) -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- +++ THIS PROJECT +++ -->
+      <dependency>
+        <groupId>net.michaelkoepf</groupId>
+        <artifactId>spegauge-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.michaelkoepf</groupId>
+        <artifactId>spegauge-flink-sdk</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <!-- +++ EXTERNAL +++ -->
+      <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
+      <dependency>
+        <groupId>info.picocli</groupId>
+        <artifactId>picocli</artifactId>
+        <version>${picocli.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <!-- aligns JUnit dependency versions -->
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.javalin</groupId>
+        <artifactId>javalin</artifactId>
+        <version>${javalin.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>${jettyserver.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-statistics-distribution</artifactId>
+        <version>${commonsstatistics.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-rng-simple -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-rng-simple</artifactId>
+        <version>${commmonsrng.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.avro/avro -->
+      <dependency>
+        <groupId>org.apache.avro</groupId>
+        <artifactId>avro</artifactId>
+        <version>${avro.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/io.github.classgraph/classgraph -->
+      <dependency>
+        <groupId>io.github.classgraph</groupId>
+        <artifactId>classgraph</artifactId>
+        <version>${classgraph.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>2.12.1</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Apache Flink -->
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-streaming-java</artifactId>
+        <version>${flink.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- NOT a duplicate of the above, but a different artifact -->
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-streaming-java</artifactId>
+        <version>${flink.version}</version>
+        <scope>test</scope>
+        <classifier>tests</classifier>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-clients -->
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-clients</artifactId>
+        <version>${flink.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-runtime</artifactId>
+        <version>${flink.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-java</artifactId>
+        <version>${flink.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-files -->
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-connector-files</artifactId>
+        <version>${flink.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-metrics-dropwizard</artifactId>
+        <version>${flink.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Testing -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${failsafe.plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Fat JAR -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>${shadeplugin.version}</version>
+          <executions>
+            <!-- Run shade goal on package phase -->
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+              <configuration>
+                <createDependencyReducedPom>false</createDependencyReducedPom>
+                <filters>
+                  <filter>
+                    <artifact>*:*</artifact>
+                    <excludes>
+                      <exclude>module-info.class</exclude>
+                      <exclude>META-INF/*</exclude>
+                    </excludes>
+                  </filter>
+                </filters>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler.plugin.version}</version>
+          <configuration>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>info.picocli</groupId>
+                <artifactId>picocli-codegen</artifactId>
+                <version>${picocli.codgen.version}</version>
+              </path>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+            </annotationProcessorPaths>
+            <compilerArgs>
+              <arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
+            </compilerArgs>
+          </configuration>
+        </plugin>
+        <!-- Code formatting -->
+        <plugin>
+          <groupId>com.spotify.fmt</groupId>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <version>${fmt.plugin.version}</version>
+          <executions>
+            <execution>
+              <phase>compile</phase>
+              <goals>
+                <goal>format</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

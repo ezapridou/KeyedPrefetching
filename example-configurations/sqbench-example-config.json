@@ -1,0 +1,227 @@
+{
+  "benchmark": "net.michaelkoepf.spegauge.generators.sqbench.SQBenchEventGeneratorFactory",
+  "numEventsTotal": 100000,
+  "seed": 42,
+  "scenarios": [
+    {
+      "scenarioName": "First Scenario",
+      "nextScenarioAfter": 50000,
+      "numEventsPerSecond": 10000,
+      "isRateLimited": true,
+      "proportionEntityA": 50,
+      "proportionEntityB": 50,
+      "proportionEntityC": 0,
+      "proportionEntityD": 0,
+      "proportionScalingFactor": 1,
+      "entityA": {
+        "entityType": "A",
+        "PK": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              499
+            ]
+          },
+          "numDistinctValues": 500
+        },
+        "FK": null,
+        "longAttribute1": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              199
+            ]
+          },
+          "numDistinctValues": 200
+        },
+        "longAttribute2": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              99
+            ]
+          },
+          "numDistinctValues": 100
+        },
+        "plainStringAttributeLength": {
+          "length": 10
+        },
+        "jsonStringAttribute": {
+          "enabled": false
+        },
+        "xmlStringAttribute": {
+          "enabled": false
+        },
+        "numBytesPadding": 0
+      },
+      "entityB": {
+        "entityType": "B",
+        "PK": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              199
+            ]
+          },
+          "numDistinctValues": 200
+        },
+        "FK": {
+          "references": "A",
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              499
+            ]
+          }
+        },
+        "longAttribute1": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              499
+            ]
+          },
+          "numDistinctValues": 500
+        },
+        "longAttribute2": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              19
+            ]
+          },
+          "numDistinctValues": 20
+        },
+        "plainStringAttributeLength": {
+          "length": 20
+        },
+        "jsonStringAttribute": {
+          "enabled": false
+        },
+        "xmlStringAttribute": {
+          "enabled": false
+        },
+        "numBytesPadding": 0
+      },
+      "entityC": null,
+      "entityD": null
+    },
+    {
+      "scenarioName": "Second Scenario",
+      "nextScenarioAfter": 50000,
+      "numEventsPerSecond": 10000,
+      "isRateLimited": true,
+      "proportionEntityA": 25,
+      "proportionEntityB": 75,
+      "proportionEntityC": 0,
+      "proportionEntityD": 0,
+      "proportionScalingFactor": 1,
+      "entityA": {
+        "entityType": "A",
+        "PK": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              9
+            ]
+          },
+          "numDistinctValues": 10
+        },
+        "FK": null,
+        "longAttribute1": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              199
+            ]
+          },
+          "numDistinctValues": 200
+        },
+        "longAttribute2": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              99
+            ]
+          },
+          "numDistinctValues": 100
+        },
+        "plainStringAttributeLength": {
+          "length": 10
+        },
+        "jsonStringAttribute": {
+          "enabled": false
+        },
+        "xmlStringAttribute": {
+          "enabled": false
+        },
+        "numBytesPadding": 0
+      },
+      "entityB": {
+        "entityType": "B",
+        "PK": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              199
+            ]
+          },
+          "numDistinctValues": 200
+        },
+        "FK": {
+          "references": "A",
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              9
+            ]
+          }
+        },
+        "longAttribute1": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              499
+            ]
+          },
+          "numDistinctValues": 500
+        },
+        "longAttribute2": {
+          "distribution": {
+            "type": "UNIFORM_DISCRETE",
+            "parameters": [
+              0,
+              19
+            ]
+          },
+          "numDistinctValues": 20
+        },
+        "plainStringAttributeLength": {
+          "length": 20
+        },
+        "jsonStringAttribute": {
+          "enabled": false
+        },
+        "xmlStringAttribute": {
+          "enabled": false
+        },
+        "numBytesPadding": 0
+      },
+      "entityC": null,
+      "entityD": null
+    }
+  ]
+}
